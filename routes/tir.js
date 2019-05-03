@@ -7,7 +7,18 @@ router.get('/', (req, res) => {
     Tir.findAll()
         .then(d => {
             console.log('data', d);
-            res.sendStatus(200);
+            res.send(d);
+            // res.sendStatus(200);
+        })
+        .catch(err => console.log(err));
+});
+
+router.get('/add', (req,res) => {
+    Tir.create({
+        title: 'another one'
+    })
+        .then(tir => {
+            res.redirect('/tir')
         })
         .catch(err => console.log(err));
 });
